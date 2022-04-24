@@ -495,6 +495,12 @@
     "size": [ 16, 16 ]
   },
 
+  "upload_icon": {
+    "type": "image",
+    "texture": "textures/ui/upload_glyph",
+    "size": [ 16, 16 ]
+  },
+
   "add_server_icon": {
     "type": "image",
     "texture": "textures/ui/addServer",
@@ -1671,6 +1677,7 @@
     "controls": [
       {
         "additional_server_toggle_base@play.server_toggle_base": {
+          "$focus_override_right": "edit_server",
           "size": [ "fill", "100% + 1px" ],
           "layer": 1,
           "$button_content": "play.additional_server_toggle_content",
@@ -1679,6 +1686,7 @@
       },
       {
         "network_server_world_edit_button@play.network_server_world_edit_button": {
+          "$focus_id": "edit_server",
           "$focus_override_right": "right_side",
           "ignored": "$ignore_add_servers",
           "layer": 1
@@ -1714,7 +1722,7 @@
                 "text": "#info_additional_server_name",
                 "localize": false,
                 "color": "$main_header_text_color",
-                "font_type": "#smooth_font",
+                "font_type": "smooth",
                 "text_alignment": "left",
                 "size": [ "100%", 10 ],
                 "bindings": [
@@ -1886,7 +1894,7 @@
                 "type": "label",
                 "text": "externalServerScreen.addServerDescription",
                 "color": "$body_text_color",
-                "font_type": "#smooth_font",
+                "font_type": "smooth",
                 "font_scale_factor": 0.8,
                 "text_alignment": "left",
                 "size": [ "100%", "default" ]
@@ -1999,7 +2007,7 @@
                       "text": "#third_party_server_name",
                       "localize": false,
                       "color": "$text_color",
-                      "font_type": "#smooth_font",
+                      "font_type": "smooth",
                       "size": [ "100%", "100%" ],
                       "anchor_from": "left_middle",
                       "anchor_to": "left_middle",
@@ -2059,7 +2067,7 @@
                 "text": "#third_party_server_message",
                 "localize": false,
                 "color": "$dark_button_default_text_color",
-                "font_type": "#smooth_font",
+                "font_type": "smooth",
                 "size": [ "100% - 4px", "100%" ],
                 "offset": [ 2, 1 ],
                 "anchor_from": "left_middle",
@@ -2222,7 +2230,7 @@
                 "text": "#info_third_party_server_name",
                 "localize": false,
                 "color": "$main_header_text_color",
-                "font_type": "#smooth_font",
+                "font_type": "smooth",
                 "text_alignment": "left",
                 "size": [ "100%", 10 ],
                 "bindings": [
@@ -2381,7 +2389,7 @@
           "type": "label",
           "size": [ "default", "default" ],
           "color": "$main_header_text_color",
-          "font_type": "#smooth_font",
+          "font_type": "smooth",
           "text_alignment": "left",
           "text": "$text_icon_number_text"
         }
@@ -2430,7 +2438,7 @@
                 "type": "label",
                 "size": [ "default", "default" ],
                 "color": "$main_header_text_color",
-                "font_type": "#smooth_font",
+                "font_type": "smooth",
                 "text_alignment": "left",
                 "text": "$text_icon_number_number",
                 "bindings": "$number_bindings"
@@ -2651,7 +2659,7 @@
           "offset": [ 2, 0 ],
           "layer": 1,
           "color": "$body_text_color",
-          "font_type": "#smooth_font",
+          "font_type": "smooth",
           "enable_profanity_filter": false,
           "text": "#description_label",
           "notify_on_ellipses": [
@@ -2865,7 +2873,7 @@
                             "type": "label",
                             "size": [ "100%", "default" ],
                             "color": "$body_text_color",
-                            "font_type": "#smooth_font",
+                            "font_type": "smooth",
                             "text": "#available_game_title",
                             "bindings": [
                               {
@@ -2881,7 +2889,7 @@
                             "type": "label",
                             "size": [ "100%", "default" ],
                             "color": "$body_text_color",
-                            "font_type": "#smooth_font",
+                            "font_type": "smooth",
                             "font_scale_factor": 0.8,
                             "text": "#available_game_subtitle",
                             "bindings": [
@@ -2912,7 +2920,7 @@
                       "type": "label",
                       "size": [ "100%", "default" ],
                       "color": "$body_text_color",
-                      "font_type": "#smooth_font",
+                      "font_type": "smooth",
                       "font_scale_factor": 0.8,
                       "text": "#available_game_description",
                       "bindings": [
@@ -3007,7 +3015,7 @@
           "offset": [ 2, 0 ],
           "layer": 1,
           "color": "$body_text_color",
-          "font_type": "#smooth_font",
+          "font_type": "smooth",
           "font_scale_factor": 0.8,
           "enable_profanity_filter": false,
           "text": "#news_text",
@@ -3073,7 +3081,7 @@
                       "type": "label",
                       "size": [ "100%", 11 ],
                       "color": "$body_text_color",
-                      "font_type": "#smooth_font",
+                      "font_type": "smooth",
                       "text": "#news_label",
                       "layer": 5,
                       "bindings": [
@@ -3519,7 +3527,7 @@
           "size": [ "default", "100%" ],
           "max_size": [ 60, "100%" ],
           "color": "$dark_button_default_text_color",
-          "font_type": "#smooth_font",
+          "font_type": "smooth",
           "text": "#realms_expiration_label",
           "bindings": [
             {
@@ -3883,16 +3891,6 @@
         "from_button_id": "button.menu_ok",
         "to_button_id": "$pressed_button_name",
         "mapping_type": "focused"
-      },
-      {
-        "from_button_id": "button.controller_secondary_select",
-        "to_button_id": "button.upload_legacy_world",
-        "mapping_type": "focused"
-      },
-      {
-        "from_button_id": "button.menu_secondary_select",
-        "to_button_id": "button.upload_legacy_world",
-        "mapping_type": "focused"
       }
     ],
     "bindings": [
@@ -3932,6 +3930,46 @@
     ]
   },
 
+  "cloud_upload_button@common_buttons.dark_glyph_button": {
+    "size": [ "100%y - 1px", "100%" ],
+    "$pressed_button_name": "button.cloud_upload",
+    "$button_content": "play.upload_icon",
+    "$button_tts_header": "accessibility.play.uploadWorld",
+    "layer": 2,
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "local_worlds"
+      }
+    ]
+  },
+
+  "cloud_upload_and_edit_world_stack_panel": {
+    "size": [ "100%c - 2px", "100%" ],
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "controls": [
+      {
+        "cloud@play.cloud_upload_button": {
+          "visible": false,
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "local_worlds"
+            },
+            {
+              "binding_name": "#cloud_upload_enabled",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "edit@play.local_world_edit_button": {}
+      }
+    ]
+  },
+
   "legacy_world_delete_button@common_buttons.dark_glyph_button": {
     "size": [ "100%y - 1px", "100%" ],
     "$pressed_button_name": "button.menu_legacy_world_item_delete",
@@ -3962,7 +4000,7 @@
           "anchor_from": "top_left",
           "anchor_to": "top_left",
           "$primary_header_button": "play.local_world_item_button",
-          "$secondary_header_button": "play.local_world_edit_button",
+          "$secondary_header_button": "play.cloud_upload_and_edit_world_stack_panel",
           "$secondary_visible": "$local_world_edit_button_visible"
         }
       }
@@ -5093,7 +5131,29 @@
                 "$label_offset": [ 1, 0 ],
                 "$label_content_label": "localWorld.no_local_worlds_present",
                 "$label_content_content": "play.storage_location_dropdown_panel",
-                "$information_panel_label_text": "localWorld.no_local_worlds_present"
+                "$information_panel_label_text": "localWorld.no_local_worlds_present",
+                "bindings": [
+                  {
+                    "binding_name": "#no_local_world_switch_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "no_local_worlds_get_help@play.label_content_template": {
+                "size": [ "100% - 6px", "100%c + 1px" ],
+                "offset": [ 0, 2 ],
+                "$label_offset": [ 1, 0 ],
+                "$label_content_label": "localWorld.no_local_worlds_present_external",
+                "$label_content_content": "play.no_local_worlds_launch_help",
+                "$information_panel_label_text": "localWorld.no_local_worlds_present_external",
+                "bindings": [
+                  {
+                    "binding_name": "#no_local_world_help_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ]
               }
             }
           ]
@@ -5106,6 +5166,12 @@
         "binding_name_override": "#visible"
       }
     ]
+  },
+  
+  "no_local_worlds_launch_help@common_buttons.light_text_button": {
+    "$pressed_button_name": "button.no_local_worlds_launch_help",
+	"$button_text": "localWorld.no_local_worlds_button_label",
+    "size": [ "100%", 29 ]
   },
 
   "storage_location_dropdown_panel": {
@@ -5665,7 +5731,7 @@
             {
               "no_featured_server_connection@play.information_panel": {
                 "ignored": "(not $is_ps4)",
-                "$information_label_font": "#smooth_font",
+                "$information_label_font": "smooth",
                 "$information_panel_label_text": "#internet_connection_text",
                 "$information_panel_label_text_binding_type": "global",
                 "$information_panel_label_text_binding_condition": "always_when_visible",
@@ -5693,7 +5759,7 @@
                 "controls": [
                   {
                     "server_multiplayer_privileges_blocked@play.information_panel": {
-                      "$information_label_font": "#smooth_font",
+                      "$information_label_font": "smooth",
                       "$information_panel_label_text": "#multiplayer_blocked_text",
                       "$information_panel_label_text_binding_type": "global",
                       "$information_panel_label_text_binding_condition": "always_when_visible",
@@ -5881,7 +5947,7 @@
           "size": [ "100% - 8px", "default" ],
           "layer": 1,
           "shadow": false,
-          "font_type": "#smooth_font",
+          "font_type": "smooth",
           "text": "$cross_platform_information_text"
         }
       }
@@ -6118,7 +6184,7 @@
                           "label": {
                             "type": "label",
                             "$information_label_font|default": "default",
-                            "font_type": "#smooth_font",
+                            "font_type": "smooth",
                             "color": "$dark_button_default_text_color",
                             "size": [ "100%", "default" ],
                             "text_alignment": "center",
@@ -6513,7 +6579,6 @@
       },
       {
         "x_image@common.light_close_button": {
-          "ignored": "$game_pad",
           "layer": 1,
           "offset": [ 0, -1 ],
           "anchor_from": "center",
@@ -6521,7 +6586,13 @@
           "focus_identifier": "close_button",
           "focus_change_left": "FOCUS_OVERRIDE_STOP",
           "focus_change_up": "FOCUS_OVERRIDE_STOP",
-          "focus_change_right": "FOCUS_OVERRIDE_STOP"
+          "focus_change_right": "FOCUS_OVERRIDE_STOP",
+          "bindings": [
+            {
+              "binding_name": "(not #gamepad_helper_visible)",
+              "binding_name_override": "#visible"
+            }
+          ]
         }
       }
     ]
@@ -7223,7 +7294,7 @@
         "text_line_1": {
           "type": "label",
           "size": [ "100%", "default" ],
-          "font_type": "#smooth_font",
+          "font_type": "smooth",
           "text": "networkWorld.highPingWarning.line1",
           "color": "$main_header_text_color"
         }
@@ -7238,7 +7309,7 @@
         "text_line_2": {
           "type": "label",
           "size": [ "100%", "default" ],
-          "font_type": "#smooth_font",
+          "font_type": "smooth",
           "text": "networkWorld.highPingWarning.line2",
           "color": "$main_header_text_color"
         }
