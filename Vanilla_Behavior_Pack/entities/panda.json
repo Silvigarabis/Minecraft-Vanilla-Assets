@@ -1,5 +1,5 @@
 {
-  "format_version": "1.18.10",
+  "format_version": "1.16.0",
   "minecraft:entity": {
     "description": {
       "identifier": "minecraft:panda",
@@ -321,8 +321,6 @@
 
 
     "components": {
-      "minecraft:is_hidden_when_invisible": {
-      },
       "minecraft:type_family": {
         "family": [ "panda" ]
       },
@@ -446,6 +444,7 @@
         "speed_multiplier": 1.25
       },
       "minecraft:balloonable": {
+		"mass": 1.5
       },
       "minecraft:rideable": {
         "seat_count": 1,

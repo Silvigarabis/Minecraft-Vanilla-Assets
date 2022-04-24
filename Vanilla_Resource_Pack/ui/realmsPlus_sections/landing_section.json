@@ -68,36 +68,6 @@
         "title_space@realmsPlus_landing.title_space": {}
       },
       {
-        "gradient_panel": {
-          "type": "panel",
-          "size": [ "100%", "100%c" ],
-          "controls": [
-            {
-              "label_with_gradient@realmsPlus.gradient_content_panel": {
-                "size": [ "100% - 6px", 15 ],
-                "$gradient_content": "realmsPlus_landing.free_trial_text"
-              }
-            }
-          ],
-          "bindings": [
-            {
-              "binding_name": "#realms_plus_one_month_free_trial_visible",
-              "binding_name_override": "#visible"
-            }
-          ]
-        }
-      },
-      {
-        "vertical_space@realmsPlus_landing.vertical_small_spacer": {
-          "bindings": [
-            {
-              "binding_name": "#realms_plus_one_month_free_trial_visible",
-              "binding_name_override": "#visible"
-            }
-          ]
-        }
-      },
-      {
         "action_button@realmsPlus_buy.buy_button_panel": {
           "$pressed_button_name": "button.action_button",
           "bindings": [
@@ -111,31 +81,18 @@
         }
       },
       {
-        "vertical_space2@realmsPlus_landing.vertical_small_spacer": {
-          "bindings": [
-            {
-              "binding_name": "(not #realms_plus_one_month_free_trial_visible)",
-              "binding_name_override": "#visible"
-            }
-          ]
-        }
+        "vertical_space@realmsPlus_landing.vertical_small_spacer": {}
       },
       {
-        "gradient_panel2": {
+        "gradient_panel": {
           "type": "panel",
           "size": [ "100%", "100%c" ],
           "controls": [
             {
-              "label_with_gradient2@realmsPlus.gradient_content_panel": {
+              "label_with_gradient@realmsPlus.gradient_content_panel": {
                 "size": [ "100% - 6px", 15 ],
                 "$gradient_content": "realmsPlus_landing.subscription_includes_text"
               }
-            }
-          ],
-          "bindings": [
-            {
-              "binding_name": "(not #realms_plus_one_month_free_trial_visible)",
-              "binding_name_override": "#visible"
             }
           ]
         }
@@ -148,18 +105,6 @@
     "size": [ "100% - 6px", "default" ],
     "text": "store.realmsPlus.landing.header",    
     "color": "$store_white_text_color"
-  },
-
-  "free_trial_text": {
-    "type": "label",
-    "size": [ "100% - 6 px", "default" ],
-    "text": "#free_trial_header_text",
-    "color": "$store_white_text_color",
-    "bindings": [
-      {
-        "binding_name": "#free_trial_header_text"
-      }
-    ]
   },
 
   "title_space": {
@@ -190,7 +135,7 @@
       },
       {
         "info_description_stack@realmsPlus_landing.info_description_stack": {
-          "size": [ "fill", "100%c" ]
+          "size": [ "fill", "100%sm" ]
         }
       }
     ]
@@ -243,7 +188,7 @@
   "info_section_stack": {
     "type": "stack_panel",
     "orientation": "horizontal",
-    "size": [ "100%", "100%cm" ]
+    "size": [ "100%", "fill" ]
   },
 
   "info_section_image_with_border@common.focus_border_white": {
@@ -307,12 +252,23 @@
         "vertical_small_spacer_1@realmsPlus_landing.vertical_small_spacer": {}
       },
       {
+        "info_text_bullet_3@realmsPlus_landing.info_text_bullet": {
+          "$info_text_line": "store.realmsPlus.landing.info2.line3"
+        }
+      },
+      {
+        "vertical_small_spacer_2@realmsPlus_landing.vertical_small_spacer": {}
+      },
+      {
         "info_text_bullet_4@realmsPlus_landing.info_text_bullet": {
-          "$info_text_line": "store.realmsPlus.landing.info2.line3",
+          "text": "#landing_info_line_4",
           "bindings": [
             {
               "binding_name": "#realms_plus_one_month_free_trial_visible",
               "binding_name_override": "#visible"
+            },
+            {
+              "binding_name": "#landing_info_line_4"
             }
           ]
         }
@@ -322,16 +278,14 @@
       },
       {
         "info_text_bullet_5@realmsPlus_landing.info_text_bullet": {
-          "$info_text_line": "#landing_info_line_4",
+          "text": "#landing_info_line_5",
           "bindings": [
             {
-              "binding_name": "(not #realms_plus_one_month_free_trial_visible)",
+              "binding_name": "#realms_plus_one_month_free_trial_not_visible",
               "binding_name_override": "#visible"
-            }
-          ],
-          "$text_bindings": [
+            },
             {
-              "binding_name": "#landing_info_line_4"
+              "binding_name": "#landing_info_line_5"
             }
           ]
         }
@@ -345,30 +299,10 @@
   },
 
   "info_text_bullet": {
-    "type": "stack_panel",
-    "orientation": "horizontal",
-    "size": [ "100%", "100%cm" ],
-    "$text_bindings|default": [],
-    "controls": [
-      {
-        "info_text_bullet_bullet": {
-          "type": "label",
-          "text": "-",
-          "size": [ 4, "default" ],
-          "font_type": "smooth",
-          "color": "$store_white_text_color"
-        }
-      },
-      {
-        "info_text_bullet_body": {
-          "type": "label",
-          "text": "$info_text_line",
-          "size": [ "fill", "default" ],
-          "font_type": "smooth",
-          "color": "$store_white_text_color",
-          "bindings": "$text_bindings"
-        }
-      }
-    ]
+    "type": "label",
+    "text": "$info_text_line",
+    "size": [ "100%", "default" ],
+    "font_type": "smooth",
+    "color": "$store_white_text_color"
   }
 }

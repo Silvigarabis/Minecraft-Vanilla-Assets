@@ -261,8 +261,7 @@
     "anchor_to": "top_left",
     "type": "stack_panel",
     "orientation": "vertical",
-    "size": [ "100% - 1px", "100%c" ],
-    "offset": [ 1, 0 ],
+    "size": [ "100%", "100%c" ],
     "controls": [
       {
         "padding_0": {
@@ -685,22 +684,11 @@
     "type": "input_panel",
     "anchor_from": "top_middle",
     "anchor_to": "top_middle",
-    "$scroll_size": [ 5, "100% - 4px" ],
-    "$use_transparent_background|default": true,
     "controls": [
-      {
-        "background": {
-          "type": "image",
-          "texture": "textures/ui/banners_no_border",
-          "layer": 1,
-          "ignored": "$use_transparent_background"
-        }
-      },
       {
         "main_panel_content": {
           "type": "panel",
           "size": [ "100%", "100%" ],
-          "layer": 2,
           "bindings": [
             {
               "binding_name": "(not #page_loading_visible)",
@@ -713,13 +701,54 @@
               "offers@common.scrolling_panel": {
                 "anchor_from": "top_left",
                 "anchor_to": "top_left",
-                "size": [ "100%", "100%" ],
-                "$scrolling_pane_size": [ "100% - 2px", "100%" ],
-                "$scrolling_pane_offset": [ 2, 0 ],
+                "size": [ "100% - 2px", "100%" ],
+                "$scrolling_pane_size": [ "100%", "100%" ],
+                "$scrolling_pane_offset": [ 0, 0 ],
+                "$scroll_size": [ 5, "100% - 8px" ],
                 "$scrolling_content": "store_layout.scrolling_content_stack",
                 "$scroll_bar_left_padding_size": [ 0, 0 ],
                 "$show_background": false,
                 "$bar_visible": false
+              }
+            },
+            {
+              "filter_menu_panel": {
+                "type": "panel",
+                "visible": false,
+                "property_bag": {
+                  "#visible": false 
+                },
+                "controls": [
+                  {
+                    "filter_menu@filter_menu.filter_menu_screen_content": {}
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "#filter_screen_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "sort_menu_panel": {
+                "type": "panel",
+                "visible": false,
+                "property_bag": {
+                  "#visible": false
+                },
+                "controls": [
+                  {
+                    "sort_menu@sort_menu.sort_menu_screen_content": {}
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "#sort_screen_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ]
               }
             }
           ]
@@ -728,8 +757,6 @@
       {
         "progress_loading@common_store.progress_loading": {
           "layer": 100, // Make this on top
-          "$store_failure_text": "#store_failure_text",
-          "$store_failure_text_binding_type": "global",
           "bindings": [
             {
               "binding_name": "#page_loading_visible",
@@ -893,7 +920,7 @@
             },
             {
               "binding_name": "#nav_section_content",
-              "binding_name_override": "#collection_length"
+              "binding_name_override": "#collection_length"              
             }
           ]
         }
@@ -950,7 +977,7 @@
   // Screen
   //--------------------------------------------------------------------------------
 
-  "store_data_driven_screen_base@common_store.store_base_screen": {
+  "store_data_driven_screen@common_store.store_base_screen": {
     "button_mappings": [
       {
         "from_button_id": "button.menu_cancel",
@@ -970,106 +997,23 @@
       }
     ],
     "$default_text_color": [ 0.3, 0.3, 0.3 ],
-    "variables": [
-      {
-        "requires": "(not $use_animation)",
-        "$screen_animations": [],
-        "$background_animations": []
-      },
-      {
-        "requires": "($use_animation)",
-        "$screen_animations": [
-          "@common.screen_exit_animation_pop_offset",
-          "@common.screen_exit_animation_pop_fade"
-        ],
-        "$background_animations": [],
-        "$fill_alpha": 0.75
-      }
-    ]
-  },
-
-  "store_data_driven_modal_one_button_screen@store_layout.store_data_driven_screen_base": {
-    "$screen_content": "store_layout.store_screen_modal_panel",
-    "$header_safezone_control": "common.empty_panel",
-    "$header_bar_control": "common.empty_panel",
-    "$screen_background_control": "common_store.store_background",
-    "$is_full_screen_layout": false,
-    "force_render_below": true
-  },
-
-  "store_screen_modal_panel": {
-    "type": "panel",
-    "controls": [
-      {
-        "one_button_dialog@common_dialogs.main_panel_one_button": {
-          "size": "$custom_templates_screen_size",
-          "$child_control": "store_layout.main_panel",
-          "$button_panel": "store_layout.dialog_button",
-          "$text_name": "#screen_header_title",
-          "$title_text_binding_type": "global",
-          "$use_transparent_background": false
-        }
-      },
-      {
-        "popup_dialog_factory": {
-          "type": "factory",
-          "control_ids": {
-            "no_store_connection": "@common_store.popup_dialog__no_store_connection",
-            "restore_popup": "@common_store.popup_dialog__restore_popup",
-            "restore_failed": "@common_store.popup_dialog__restore_failed"
-          }
-        }
-      }
-    ]
-  },
-
-  "dialog_button@common_buttons.light_text_button": {
-    "$pressed_button_name": "button.bottom_modal",
-    "$button_text": "#dialog_button_text",
-    "$button_text_binding_type": "collection",
-    "$button_text_grid_collection_name": "modal_button_collection",
-    "$focus_override_down": "FOCUS_OVERRIDE_STOP",
-    "bindings": [
-      {
-        "binding_type": "collection_details",
-        "binding_collection_name": "$button_text_grid_collection_name"
-      }
-    ]
-  },
-
-  "store_data_driven_screen@store_layout.store_data_driven_screen_base": {
-    "$screen_content": "store_layout.store_full_screen_content",
+    "$screen_content": "store_layout.store_screen_content",
     "$header_safezone_control": "common_store.store_top_bar_filler",
     "$header_bar_control": "common_store.store_top_bar",
     "$screen_background_control": "common_store.store_background",
-    "$is_full_screen_layout": true
+    "$is_full_screen_layout": true,
+    "$fill_alpha": 0.75
   },
 
-  "store_screen_main_panel": {
-    "type": "panel",
-    "controls": [
-      {
-        "main_content_view@sidebar_navigation.sidebar_view": {
-          "$sidebar_main_view_content": "store_layout.main_panel",
-          "$scroll_size": [ 5, "100% - 8px" ]
-        }
-      },
-      {
-        "sort_and_filter_modals@common_store.sort_and_filter_menu_modals": {}
-      }
-    ]
-  },
-
-  "store_full_screen_content": {
+  "store_screen_content": {
     "type": "panel",
     "alpha": "@common_store.screen_fade_in_alpha_anim",
     "propagate_alpha": true,
     "disable_anim_fast_forward": true,
-    "$ignore_inventory_button": "$is_sidebar_navigation_enabled",
     "controls": [
       {
         "main_panel@common_store.store_header_with_coins": {
-          "$child_control": "store_layout.store_screen_main_panel",
+          "$child_control": "store_layout.main_panel",
           "$button_text": "store.title"
         }
       },

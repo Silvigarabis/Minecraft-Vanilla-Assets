@@ -17,9 +17,7 @@
     "layer": 1,
     "texture": "$new_ui_button_texture",
     "$button_alpha|default": "$content_alpha",
-    "alpha": "$button_alpha",
-    "$button_image_bindings|default": [],
-    "bindings": "$button_image_bindings"
+    "alpha": "$button_alpha"
   },
 
   "background_button_image": {
@@ -498,8 +496,6 @@
     "max_size": "$button_text_max_size",
     "$text_alignment|default": "center",
     "text_alignment": "$text_alignment",
-    "$tts_section_header|default": "",
-    "tts_section_header": "$tts_section_header",
     "bindings": [
       {
         "binding_type": "$button_text_binding_type",
@@ -513,6 +509,7 @@
 
   "underline_button@common.button": {
     "size": [ "100%c", "100%c" ],
+    "pressed_control": "hover",
 
     "$underline_button_size|default": [ "100%c", "100%c" ],
     "$single_label_size": [ "default", 8 ],
@@ -541,26 +538,6 @@
       },
       {
         "hover": {
-          "type": "panel",
-          "size": "$underline_button_size",
-          "controls": [
-            {
-              "label_hover@common.single_line_label": {
-                "$single_line_label_color|default": [ 0.215, 0.839, 0.118 ],
-                "$underline_control": [
-                  {
-                    "underline_hover@common.underline": {
-                      "$texture": "textures/ui/underline_focus"
-                    }
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      },
-      {
-        "pressed": {
           "type": "panel",
           "size": "$underline_button_size",
           "controls": [
@@ -687,11 +664,6 @@
     "$default_pressed_alpha|default": 1,
     "$border_default_alpha|default": 1,
 
-    "$border_default_layer|default": 2,
-    "$border_hover_layer|default": 3,
-    "$border_pressed_layer|default": 3,
-    "$border_locked_layer|default": 1,
-
     // These states are for passing the button state to the button content - do not set these in a parent!
     "$default_state|default": false,
     "$hover_state|default": false,
@@ -715,7 +687,7 @@
           "$border_color": "$light_border_default_color",
           "$button_alpha": "$default_button_alpha",
           "$border_visible": "$default_state_border_visible",
-          "$border_layer": "$border_default_layer",
+          "$border_layer": 2,
           "$default_state": true,
           "$border_alpha": "$border_default_alpha",
           "layer": 1
@@ -731,7 +703,7 @@
           "$content_alpha": "$hover_content_alpha",
           "$border_color": "$light_border_hover_color",
           "$border_visible": "$hover_state_border_visible",
-          "$border_layer": "$border_hover_layer",
+          "$border_layer": 3,
           "$hover_state": true,
           "$button_alpha": "$default_hover_alpha",
           "layer": 2
@@ -747,7 +719,7 @@
           "$button_offset": "$button_pressed_offset",
           "$border_color": "$light_border_pressed_color",
           "$border_visible": "$pressed_state_border_visible",
-          "$border_layer": "$border_pressed_layer",
+          "$border_layer": 3,
           "$button_alpha": "$default_pressed_alpha",
           "$pressed_state": true,
           "layer": 3
@@ -763,7 +735,7 @@
           "$border_color": "$light_border_locked_color",
           "$button_image": "common_buttons.locked_button_image",
           "$border_visible": "$locked_state_border_visible",
-          "$border_layer": "$border_locked_layer",
+          "$border_layer": 1,
           "$locked_state": true,
           "layer": 1
         }
@@ -1062,7 +1034,7 @@
 
   "horizontal_form_fitting": {
     "type": "panel",
-    "size": [ "100%c", "100%c" ],
+    "size": [ "100%c", "100%" ],
     "offset": "$button_offset",
     "controls": [
       {
@@ -2040,8 +2012,6 @@
     // binding vars (should be same for all children)
     "$tooltip_button_binding_type|default": "global",
     "$tooltip_button_collection_name|default": "",
-    "$tooltip_button_visibility_binding_name|default": "#dynamic_tooltip_notification_visibility_binding_name",
-
 
     "locked_control": "locked",
 
@@ -2088,7 +2058,7 @@
     ],
     "bindings": [
       {
-        "binding_name": "$tooltip_button_visibility_binding_name",
+        "binding_name": "$_tooltip_button_visibility_binding_name",
         "binding_name_override": "#visible",
         "binding_collection_name": "$tooltip_button_collection_name",
         "binding_type": "$tooltip_button_binding_type"
@@ -2112,7 +2082,7 @@
           "size": [ "100%", "100%sm" ],
           "controls": [
             {
-              "focus_border@common_buttons.focus_border": {
+              "focus_border@achievement.focus_border": {
                 "size": [ "100%", "100% + 4px" ],
                 "bindings": [
                   {

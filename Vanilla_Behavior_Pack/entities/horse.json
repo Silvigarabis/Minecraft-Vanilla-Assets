@@ -282,8 +282,6 @@
     },
 
     "components": {
-      "minecraft:is_hidden_when_invisible": {
-      },
       "minecraft:equippable": {
         "slots": [
           {

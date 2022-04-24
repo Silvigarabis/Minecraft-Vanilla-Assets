@@ -95,7 +95,7 @@
           "update_interval_base": 60,
           "update_interval_variant": 40,
           "can_find_poi": false,
-          "can_migrate": true,
+          "can_migrate": false,
           "first_founding_reward": 0
         },
         "minecraft:behavior.move_to_village": {
@@ -119,14 +119,6 @@
           "value": 2.0,
           "range": 4.0,
           "event_name": "ambient.in.raid"
-        }
-      },
-      "minecraft:raid_persistence": {
-        "minecraft:persistent": {}
-      },
-      "minecraft:raid_despawn": {
-        "minecraft:despawn": {
-          "despawn_from_distance": {}
         }
       },
       "minecraft:illager_squad_captain": {
@@ -220,8 +212,6 @@
     },
 
     "components": {
-      "minecraft:is_hidden_when_invisible": {
-      },
       "minecraft:experience_reward": {
         "on_death": "query.last_hit_by_player ? (query.is_baby ? 12 : 5) + (Math.die_roll(query.equipment_count,1,3)) : 0"
       },
@@ -382,9 +372,7 @@
         "add": {
           "component_groups": [
             "minecraft:default_targeting",
-            "minecraft:raid_configuration",
-            "minecraft:raid_persistence",
-            "minecraft:raid_despawn"
+            "minecraft:raid_configuration"
           ]
         }
       },
@@ -420,26 +408,10 @@
         }
       },
       "minecraft:start_celebrating": { // Event must be called exactly this for village to fire it when a raid is lost
-        "sequence": [
-          {
-            "add": { "component_groups": [ "minecraft:celebrate" ] }
-          },
-          {
-            "filters": { "test": "has_nametag", "value": false },
-            "remove": { "component_groups": [ "minecraft:raid_persistence" ] }
-          }
-        ]
+        "add": { "component_groups": [ "minecraft:celebrate" ] }
       },
       "minecraft:stop_celebrating": {
         "remove": { "component_groups": [ "minecraft:celebrate" ] }
-      },
-      "minecraft:raid_expired": {
-        "sequence": [
-          {
-            "filters": { "test": "has_nametag", "value": false },
-            "remove": { "component_groups": [ "minecraft:raid_persistence" ] }
-          }
-        ]
       }
     }
   }

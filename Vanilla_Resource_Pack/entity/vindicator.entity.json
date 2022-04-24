@@ -38,8 +38,7 @@
         "controller_riding": "controller.animation.humanoid.riding"
       },
       "render_controllers": [ "controller.render.vindicator" ],
-      "enable_attachables": true,
-      "hide_armor": true
+      "enable_attachables": true
     }
   }
 }

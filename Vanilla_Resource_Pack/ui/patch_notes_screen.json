@@ -89,7 +89,7 @@
           "$control_size|default": [ "100%", "100%" ],
           "variables": [
             {
-              "requires": "(not $show_patch_image and not $show_button)",
+              "requires": "(not $show_patch_image and not $show_offer)",
               "$control_size": [ "100%", "100%c" ]
             }
           ],
@@ -98,7 +98,7 @@
               "content@$header_content": {
                 "variables": [
                   {
-                    "requires": "(not $show_button)",
+                    "requires": "(not $show_offer)",
                     "$header_size": [ "100%-6px", "100%c" ]
                   }
                 ],
@@ -121,14 +121,8 @@
         "text_label": {
           "type": "label",
           "color": "$text_color",
-          "text": "#patch_link_button_text",
-          "size": [ "default", "default" ],
-          "max_size": [ "100%", "default" ],
-          "bindings": [
-            {
-              "binding_name": "#patch_link_button_text"
-            }
-          ]
+          "text": "$button_text",
+          "size": [ "default", "default" ]
         }
       }
     ]
@@ -137,7 +131,9 @@
     "type": "panel",
     "controls": [
       {
-        "button_label2@patch_notes.button_label_panel": {}
+        "button_label2@patch_notes.button_label_panel": {
+          "$button_text": "skins.picker.unlock.button"
+        }
       }
     ]
   },
@@ -262,7 +258,7 @@
           "$control_size": [ "100% - 4px", "33.75%x + 2px" ],
           "variables": [
             {
-              "requires": "$show_button",
+              "requires": "$show_offer",
               "$header_content": "patch_notes_header_content_with_offer"
 
             }

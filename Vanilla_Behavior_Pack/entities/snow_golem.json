@@ -12,12 +12,10 @@
       "minecraft:snowman_sheared": {
         "minecraft:is_sheared": {
         }
-      }
+      }      
     },
 
     "components": {
-      "minecraft:is_hidden_when_invisible": {
-      },
       "minecraft:type_family": {
         "family": [ "snowgolem", "mob" ]
       },
@@ -72,7 +70,7 @@
             "damage_per_tick": 1
           },
           {
-            "filters": { "test": "in_contact_with_water", "operator": "==", "value": true },
+            "filters": { "test": "in_water_or_rain", "operator": "==", "value": true },
             "cause": "drowning",
             "damage_per_tick": 1
           }
@@ -87,7 +85,6 @@
             "spawn_items": { "table": "loot_tables/entities/snow_golem_shear.json" },
             "play_sounds": "shear",
             "interact_text": "action.interact.shear",
-            "vibration": "shear",
             "on_interact": {
               "filters": {
                 "all_of": [

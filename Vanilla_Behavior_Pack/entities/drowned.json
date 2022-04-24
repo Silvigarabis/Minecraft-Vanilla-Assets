@@ -1,5 +1,5 @@
 {
-  "format_version": "1.17.20",
+  "format_version": "1.16.0",
   "minecraft:entity": {
     "description": {
       "identifier": "minecraft:drowned",
@@ -65,8 +65,7 @@
           "priority": 3,
           "attack_interval_min": 1.0,
           "attack_interval_max": 3.0,
-          "attack_radius": 10.0,
-          "swing": true
+          "attack_radius": 10.0
         }
       },
 
@@ -415,10 +414,7 @@
         "goal_radius": 2,
         "speed_multiplier": 1.0,
         "pickup_based_on_chance": true,
-        "can_pickup_any_item": true,
-        "excluded_items": [
-          "minecraft:glow_ink_sac"
-        ]
+        "can_pickup_any_item": true
       },
       "minecraft:behavior.random_stroll": {
         "priority": 7,
@@ -450,8 +446,7 @@
                   "any_of": [
                     { "test": "is_family", "subject": "other", "value": "player" },
                     { "test": "is_family", "subject": "other", "value": "snowgolem" },
-                    { "test": "is_family", "subject": "other", "value": "irongolem" },
-                    { "test": "is_family", "subject": "other", "value": "axolotl" }
+                    { "test": "is_family", "subject": "other", "value": "irongolem" }
                   ]
                 },
                 {

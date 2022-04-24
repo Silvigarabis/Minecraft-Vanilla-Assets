@@ -65,8 +65,7 @@
             ]
           }
         ],
-        "name": "TailA",
-        "parent": "Body"
+        "name": "TailA"
       },
       {
         "pivot": [
@@ -223,8 +222,7 @@
             ]
           }
         ],
-        "name": "Head",
-        "parent": "Neck"
+        "name": "Head"
       },
       {
         "pivot": [
@@ -255,8 +253,7 @@
             ]
           }
         ],
-        "name": "UMouth",
-        "parent": "Head"
+        "name": "UMouth"
       },
       {
         "pivot": [
@@ -288,8 +285,7 @@
             "mirror": true
           }
         ],
-        "name": "Ear1",
-        "parent": "Head"
+        "name": "Ear1"
       },
       {
         "pivot": [
@@ -320,8 +316,7 @@
             ]
           }
         ],
-        "name": "Ear2",
-        "parent": "Head"
+        "name": "Ear2"
       },
       {
         "pivot": [
@@ -353,8 +348,7 @@
             "mirror": true
           }
         ],
-        "name": "MuleEarL",
-        "parent": "Head"
+        "name": "MuleEarL"
       },
       {
         "pivot": [
@@ -385,8 +379,7 @@
             ]
           }
         ],
-        "name": "MuleEarR",
-        "parent": "Head"
+        "name": "MuleEarR"
       },
       {
         "pivot": [
@@ -417,9 +410,6 @@
             ]
           }
         ],
-        "locators": {
-          "lead": [ 0.0, 17.0, -8.0 ]
-        },
         "name": "Neck"
       },
       {
@@ -515,8 +505,7 @@
             "inflate": 0.5
           }
         ],
-        "name": "Saddle",
-        "parent": "Body"
+        "name": "Saddle"
       },
       {
         "pivot": [
@@ -547,8 +536,7 @@
             ]
           }
         ],
-        "name": "SaddleMouthL",
-        "parent": "HeadSaddle"
+        "name": "SaddleMouthL"
       },
       {
         "pivot": [
@@ -579,8 +567,7 @@
             ]
           }
         ],
-        "name": "SaddleMouthR",
-        "parent": "HeadSaddle"
+        "name": "SaddleMouthR"
       },
       {
         "pivot": [
@@ -722,8 +709,7 @@
             "inflate": 0.25
           }
         ],
-        "name": "HeadSaddle",
-        "parent": "Head"
+        "name": "HeadSaddle"
       }
     ],
     "texturewidth": 64,

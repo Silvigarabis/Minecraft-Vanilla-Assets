@@ -36,7 +36,8 @@
               "action_button@how_to_play_common.action_button": {
                 "ignored": "($education_edition or $trial)",
                 "$pressed_button_name": "patch_notes_button",
-                "$button_text": "howtoplay.whatsNew"
+                "$button_text": "howtoplay.whatsNew",
+                "$focus_override_up": "FOCUS_OVERRIDE_STOP"
               }
             },
             {
@@ -2143,7 +2144,7 @@
       { "padding_1@how_to_play_common.padding": {} },
       {
         "paragraph_2@how_to_play_common.paragraph": {
-          "ignored": "$is_ios",
+          "ignored": "$ios",
           "$text": "howtoplay.classroomMode.text.2"
         }
       }
@@ -3249,6 +3250,36 @@
       {
         "paragraph_17@how_to_play_common.paragraph": {
           "$text": "howtoplay.gameSettings.text.17"
+        }
+      },
+      { "padding_17@how_to_play_common.padding": {} },
+      {
+        "paragraph_18@how_to_play_common.paragraph": {
+          "$text": "howtoplay.gameSettings.text.18"
+        }
+      },
+      { "padding_18@how_to_play_common.padding": {} },
+      {
+        "paragraph_19@how_to_play_common.paragraph": {
+          "$text": "howtoplay.gameSettings.text.19"
+        }
+      },
+      { "padding_19@how_to_play_common.padding": {} },
+      {
+        "paragraph_20@how_to_play_common.paragraph": {
+          "$text": "howtoplay.gameSettings.text.20"
+        }
+      },
+      { "padding_20@how_to_play_common.padding": {} },
+      {
+        "paragraph_21@how_to_play_common.paragraph": {
+          "$text": "howtoplay.gameSettings.text.21"
+        }
+      },
+      { "padding_21@how_to_play_common.padding": {} },
+      {
+        "paragraph_22@how_to_play_common.paragraph": {
+          "$text": "howtoplay.gameSettings.text.22"
         }
       }
     ]
@@ -4581,41 +4612,46 @@
       },
       { "padding_6@how_to_play_common.padding": {} },
       {
+        "header_3@how_to_play_common.header": {
+          "$text": "howtoplay.structureBlocks.header.3"
+        }
+      },
+      {
         "paragraph_7@how_to_play_common.paragraph": {
           "$text": "howtoplay.structureBlocks.text.7"
         }
       },
       { "padding_7@how_to_play_common.padding": {} },
       {
-        "header_3@how_to_play_common.header": {
-          "$text": "howtoplay.structureBlocks.header.3"
+        "paragraph_8_keyboard@how_to_play_common.paragraph_keyboard": {
+          "$text": "howtoplay.structureBlocks.text.8.keyboard"
         }
       },
       {
-        "paragraph_8@how_to_play_common.paragraph": {
-          "$text": "howtoplay.structureBlocks.text.8"
+        "paragraph_8_gamepad@how_to_play_common.paragraph_gamepad": {
+          "$text": "howtoplay.structureBlocks.text.8.gamepad"
+        }
+      },
+      {
+        "paragraph_8_touch@how_to_play_common.paragraph_touch": {
+          "$text": "howtoplay.structureBlocks.text.8.touch"
         }
       },
       { "padding_8@how_to_play_common.padding": {} },
       {
-        "paragraph_9_keyboard@how_to_play_common.paragraph_keyboard": {
-          "$text": "howtoplay.structureBlocks.text.9.keyboard"
+        "header_4@how_to_play_common.header": {
+          "$text": "howtoplay.structureBlocks.header.4"
         }
       },
       {
-        "paragraph_9_gamepad@how_to_play_common.paragraph_gamepad": {
-          "$text": "howtoplay.structureBlocks.text.9.gamepad"
-        }
-      },
-      {
-        "paragraph_9_touch@how_to_play_common.paragraph_touch": {
-          "$text": "howtoplay.structureBlocks.text.9.touch"
+        "paragraph_9@how_to_play_common.paragraph": {
+          "$text": "howtoplay.structureBlocks.text.9"
         }
       },
       { "padding_9@how_to_play_common.padding": {} },
       {
-        "header_4@how_to_play_common.header": {
-          "$text": "howtoplay.structureBlocks.header.4"
+        "header_5@how_to_play_common.header": {
+          "$text": "howtoplay.structureBlocks.header.5"
         }
       },
       {
@@ -4624,11 +4660,6 @@
         }
       },
       { "padding_10@how_to_play_common.padding": {} },
-      {
-        "header_5@how_to_play_common.header": {
-          "$text": "howtoplay.structureBlocks.header.5"
-        }
-      },
       {
         "paragraph_11@how_to_play_common.paragraph": {
           "$text": "howtoplay.structureBlocks.text.11"
@@ -4642,16 +4673,16 @@
       },
       { "padding_12@how_to_play_common.padding": {} },
       {
+        "header_6@how_to_play_common.header": {
+          "$text": "howtoplay.structureBlocks.header.6"
+        }
+      },
+      {
         "paragraph_13@how_to_play_common.paragraph": {
           "$text": "howtoplay.structureBlocks.text.13"
         }
       },
       { "padding_13@how_to_play_common.padding": {} },
-      {
-        "header_6@how_to_play_common.header": {
-          "$text": "howtoplay.structureBlocks.header.6"
-        }
-      },
       {
         "paragraph_14@how_to_play_common.paragraph": {
           "$text": "howtoplay.structureBlocks.text.14"
@@ -4659,25 +4690,19 @@
       },
       { "padding_14@how_to_play_common.padding": {} },
       {
+        "header_7@how_to_play_common.header": {
+          "$text": "howtoplay.structureBlocks.header.7"
+        }
+      },
+      {
         "paragraph_15@how_to_play_common.paragraph": {
           "$text": "howtoplay.structureBlocks.text.15"
         }
       },
       { "padding_15@how_to_play_common.padding": {} },
       {
-        "header_7@how_to_play_common.header": {
-          "$text": "howtoplay.structureBlocks.header.7"
-        }
-      },
-      {
         "paragraph_16@how_to_play_common.paragraph": {
           "$text": "howtoplay.structureBlocks.text.16"
-        }
-      },
-      { "padding_16@how_to_play_common.padding": {} },
-      {
-        "paragraph_17@how_to_play_common.paragraph": {
-          "$text": "howtoplay.structureBlocks.text.17"
         }
       }
     ]

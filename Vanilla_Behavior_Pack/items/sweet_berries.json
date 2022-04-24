@@ -18,9 +18,7 @@
         "plant_at": [
           "grass",
           "dirt",
-          "podzol",
-          "moss_block",
-          "mycelium"
+          "podzol"
         ]
       }
     }

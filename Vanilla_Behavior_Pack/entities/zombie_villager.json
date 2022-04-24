@@ -1,5 +1,5 @@
 {
-  "format_version": "1.17.20",
+  "format_version": "1.16.0",
   "minecraft:entity": {
     "description": {
       "identifier": "minecraft:zombie_villager",
@@ -209,8 +209,6 @@
     },
 
     "components": {
-      "minecraft:is_hidden_when_invisible": {
-      },
       // Zombie_villager Components
       "minecraft:navigation.walk": {
         "is_amphibious": true,
@@ -524,10 +522,7 @@
         "goal_radius": 2,
         "speed_multiplier": 1.0,
         "pickup_based_on_chance": true,
-        "can_pickup_any_item": true,
-        "excluded_items": [
-          "minecraft:glow_ink_sac"
-        ]
+        "can_pickup_any_item": true
       },
       "minecraft:behavior.random_stroll": {
         "priority": 9,

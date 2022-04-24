@@ -1,4 +1,4 @@
-<h1>BIOMES DOCUMENTATION </br>Version: 1.19.0.26</h1>
+<h1>BIOMES DOCUMENTATION </br>Version: 1.16.210.60</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -89,9 +89,9 @@ Biomes are read from JSON files in the biomes subfolders of behavior packs. Load
           }
           string "noise_type"<"stone_beach", "deep_ocean", "default", "default_mutated", "lowlands", "river", "ocean", "taiga", "mountains", "highlands", "mushroom", "less_extreme", "extreme", "beach", "swamp"> : opt
       }
-      object "minecraft:forced_features"[0,1] : opt // Force specific decorative features (trees, plants, etc.) to appear in this Biome, regardless of normal decoration rules.
+      object "minecraft:forced_features"[0,11] : opt // Force specific decorative features (trees, plants, etc.) to appear in this Biome, regardless of normal decoration rules.
       {
-          array "<identifier>" : opt
+          array "first_pass" : opt
           {
               object "<any array element>" : opt
               {
@@ -106,7 +106,7 @@ Biomes are read from JSON files in the biomes subfolders of behavior packs. Load
                   molang "x" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
                   object "x" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
                   {
-                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "triangle", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), triangle (centered in the range), or grid (either fixed-step or jittered)
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
                       int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
                       int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
                       array "extent"[2]
@@ -118,7 +118,7 @@ Biomes are read from JSON files in the biomes subfolders of behavior packs. Load
                   molang "z" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
                   object "z" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
                   {
-                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "triangle", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), triangle (centered in the range), or grid (either fixed-step or jittered)
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
                       int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
                       int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
                       array "extent"[2]
@@ -130,7 +130,527 @@ Biomes are read from JSON files in the biomes subfolders of behavior packs. Load
                   molang "y" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
                   object "y" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
                   {
-                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "triangle", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), triangle (centered in the range), or grid (either fixed-step or jittered)
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  feature_reference "places_feature"
+                  string "identifier"
+              }
+          }
+          array "before_underground_pass" : opt
+          {
+              object "<any array element>" : opt
+              {
+                  molang "iterations" // Number of scattered positions to generate
+                  object "scatter_chance" : opt // Probability numerator / denominator that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  {
+                      int "numerator"<1-*>
+                      int "denominator"<1-*>
+                  }
+                  molang "scatter_chance" : opt // Probability (0-100] that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  enumerated_value "coordinate_eval_order"<"xyz", "xzy", "yxz", "yzx", "zxy", "zyx"> : opt // The order in which coordinates will be evaluated. Should be used when a coordinate depends on another. If omitted, defaults to "xzy".
+                  molang "x" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "x" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "z" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "z" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "y" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "y" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  feature_reference "places_feature"
+                  string "identifier"
+              }
+          }
+          array "underground_pass" : opt
+          {
+              object "<any array element>" : opt
+              {
+                  molang "iterations" // Number of scattered positions to generate
+                  object "scatter_chance" : opt // Probability numerator / denominator that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  {
+                      int "numerator"<1-*>
+                      int "denominator"<1-*>
+                  }
+                  molang "scatter_chance" : opt // Probability (0-100] that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  enumerated_value "coordinate_eval_order"<"xyz", "xzy", "yxz", "yzx", "zxy", "zyx"> : opt // The order in which coordinates will be evaluated. Should be used when a coordinate depends on another. If omitted, defaults to "xzy".
+                  molang "x" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "x" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "z" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "z" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "y" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "y" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  feature_reference "places_feature"
+                  string "identifier"
+              }
+          }
+          array "after_underground_pass" : opt
+          {
+              object "<any array element>" : opt
+              {
+                  molang "iterations" // Number of scattered positions to generate
+                  object "scatter_chance" : opt // Probability numerator / denominator that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  {
+                      int "numerator"<1-*>
+                      int "denominator"<1-*>
+                  }
+                  molang "scatter_chance" : opt // Probability (0-100] that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  enumerated_value "coordinate_eval_order"<"xyz", "xzy", "yxz", "yzx", "zxy", "zyx"> : opt // The order in which coordinates will be evaluated. Should be used when a coordinate depends on another. If omitted, defaults to "xzy".
+                  molang "x" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "x" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "z" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "z" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "y" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "y" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  feature_reference "places_feature"
+                  string "identifier"
+              }
+          }
+          array "before_surface_pass" : opt
+          {
+              object "<any array element>" : opt
+              {
+                  molang "iterations" // Number of scattered positions to generate
+                  object "scatter_chance" : opt // Probability numerator / denominator that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  {
+                      int "numerator"<1-*>
+                      int "denominator"<1-*>
+                  }
+                  molang "scatter_chance" : opt // Probability (0-100] that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  enumerated_value "coordinate_eval_order"<"xyz", "xzy", "yxz", "yzx", "zxy", "zyx"> : opt // The order in which coordinates will be evaluated. Should be used when a coordinate depends on another. If omitted, defaults to "xzy".
+                  molang "x" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "x" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "z" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "z" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "y" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "y" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  feature_reference "places_feature"
+                  string "identifier"
+              }
+          }
+          array "surface_pass" : opt
+          {
+              object "<any array element>" : opt
+              {
+                  molang "iterations" // Number of scattered positions to generate
+                  object "scatter_chance" : opt // Probability numerator / denominator that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  {
+                      int "numerator"<1-*>
+                      int "denominator"<1-*>
+                  }
+                  molang "scatter_chance" : opt // Probability (0-100] that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  enumerated_value "coordinate_eval_order"<"xyz", "xzy", "yxz", "yzx", "zxy", "zyx"> : opt // The order in which coordinates will be evaluated. Should be used when a coordinate depends on another. If omitted, defaults to "xzy".
+                  molang "x" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "x" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "z" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "z" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "y" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "y" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  feature_reference "places_feature"
+                  string "identifier"
+              }
+          }
+          array "after_surface_pass" : opt
+          {
+              object "<any array element>" : opt
+              {
+                  molang "iterations" // Number of scattered positions to generate
+                  object "scatter_chance" : opt // Probability numerator / denominator that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  {
+                      int "numerator"<1-*>
+                      int "denominator"<1-*>
+                  }
+                  molang "scatter_chance" : opt // Probability (0-100] that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  enumerated_value "coordinate_eval_order"<"xyz", "xzy", "yxz", "yzx", "zxy", "zyx"> : opt // The order in which coordinates will be evaluated. Should be used when a coordinate depends on another. If omitted, defaults to "xzy".
+                  molang "x" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "x" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "z" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "z" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "y" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "y" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  feature_reference "places_feature"
+                  string "identifier"
+              }
+          }
+          array "before_sky_pass" : opt
+          {
+              object "<any array element>" : opt
+              {
+                  molang "iterations" // Number of scattered positions to generate
+                  object "scatter_chance" : opt // Probability numerator / denominator that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  {
+                      int "numerator"<1-*>
+                      int "denominator"<1-*>
+                  }
+                  molang "scatter_chance" : opt // Probability (0-100] that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  enumerated_value "coordinate_eval_order"<"xyz", "xzy", "yxz", "yzx", "zxy", "zyx"> : opt // The order in which coordinates will be evaluated. Should be used when a coordinate depends on another. If omitted, defaults to "xzy".
+                  molang "x" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "x" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "z" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "z" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "y" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "y" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  feature_reference "places_feature"
+                  string "identifier"
+              }
+          }
+          array "sky_pass" : opt
+          {
+              object "<any array element>" : opt
+              {
+                  molang "iterations" // Number of scattered positions to generate
+                  object "scatter_chance" : opt // Probability numerator / denominator that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  {
+                      int "numerator"<1-*>
+                      int "denominator"<1-*>
+                  }
+                  molang "scatter_chance" : opt // Probability (0-100] that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  enumerated_value "coordinate_eval_order"<"xyz", "xzy", "yxz", "yzx", "zxy", "zyx"> : opt // The order in which coordinates will be evaluated. Should be used when a coordinate depends on another. If omitted, defaults to "xzy".
+                  molang "x" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "x" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "z" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "z" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "y" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "y" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  feature_reference "places_feature"
+                  string "identifier"
+              }
+          }
+          array "after_sky_pass" : opt
+          {
+              object "<any array element>" : opt
+              {
+                  molang "iterations" // Number of scattered positions to generate
+                  object "scatter_chance" : opt // Probability numerator / denominator that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  {
+                      int "numerator"<1-*>
+                      int "denominator"<1-*>
+                  }
+                  molang "scatter_chance" : opt // Probability (0-100] that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  enumerated_value "coordinate_eval_order"<"xyz", "xzy", "yxz", "yzx", "zxy", "zyx"> : opt // The order in which coordinates will be evaluated. Should be used when a coordinate depends on another. If omitted, defaults to "xzy".
+                  molang "x" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "x" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "z" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "z" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "y" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "y" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  feature_reference "places_feature"
+                  string "identifier"
+              }
+          }
+          array "final_pass" : opt
+          {
+              object "<any array element>" : opt
+              {
+                  molang "iterations" // Number of scattered positions to generate
+                  object "scatter_chance" : opt // Probability numerator / denominator that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  {
+                      int "numerator"<1-*>
+                      int "denominator"<1-*>
+                  }
+                  molang "scatter_chance" : opt // Probability (0-100] that this scatter will occur.  Not evaluated each iteration; either no iterations will run, or all will.
+                  enumerated_value "coordinate_eval_order"<"xyz", "xzy", "yxz", "yzx", "zxy", "zyx"> : opt // The order in which coordinates will be evaluated. Should be used when a coordinate depends on another. If omitted, defaults to "xzy".
+                  molang "x" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "x" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "z" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "z" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
+                      int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
+                      int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
+                      array "extent"[2]
+                      {
+                          molang "[0..0]" : opt // Lower bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                          molang "[1..1]" : opt // Upper bound (inclusive) of the scatter range, as an offset from the input point to scatter around
+                      }
+                  }
+                  molang "y" : opt // Expression for the coordinate (evaluated each iteration).  Mutually exclusive with random distribution object below.
+                  object "y" : opt // Distribution for the coordinate (evaluated each iteration).  Mutually exclusive with Molang expression above.
+                  {
+                      enumerated_value "distribution"<"uniform", "gaussian", "inverse_gaussian", "fixed_grid", "jittered_grid"> // Type of distribution - uniform random, gaussian (centered in the range), or grid (either fixed-step or jittered)
                       int "step_size"<1-*> : opt // When the distribution type is grid, defines the distance between steps along this axis
                       int "grid_offset"<0-*> : opt // When the distribution type is grid, defines the offset along this axis
                       array "extent"[2]
@@ -228,22 +748,6 @@ Biomes are read from JSON files in the biomes subfolders of behavior packs. Load
           block_reference "sea_material" // Material used to replace air blocks below sea level.
           block_reference "foundation_material" // Material used to repalce solid blocks that are not surface blocks.
           block_reference "beach_material" : opt // Material used to decorate surface near sea level.
-      }
-      object "minecraft:mountain_parameters"[0,3] : opt // Noise parameters used to drive mountain terrain generation in Overworld
-      {
-          float "peaks_factor" : opt
-          object "steep_material_adjustment" : opt // Defines surface material for steep slopes
-          {
-               "material" : opt // Block type use as steep material.
-              bool "north_slopes" : opt // Enable for north facing slopes
-              bool "south_slopes" : opt // Enable for south facing slopes
-              bool "west_slopes" : opt // Enable for west facing slopes
-              bool "east_slopes" : opt // Enable for east facing slopes
-          }
-          object "top_slide" : opt // Controls the density tapering that happens at the top of the world to prevent terrain from reaching too high
-          {
-              bool "enabled" // If false, top slide will be disabled. If true, other parameters will be taken into account
-          }
       }
       object "minecraft:overworld_generation_rules"[0,5] : opt // Control how this biome is instantiated (and then potentially modified) during world generation of the overworld.
       {

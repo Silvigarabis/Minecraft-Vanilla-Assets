@@ -1,5 +1,5 @@
 {
-    "format_version": "1.18.20",
+    "format_version": "1.16.0",
     "minecraft:entity": {
         "description": {
             "identifier": "minecraft:bee",
@@ -22,9 +22,7 @@
                         "minecraft:double_plant:0", // Sunflower
                         "minecraft:double_plant:1", // Lilac
                         "minecraft:double_plant:4", // Rose Bush
-                        "minecraft:double_plant:5",  // Peony
-                        "minecraft:flowering_azalea", //Flowering Azalea
-                        "minecraft:azalea_leaves_flowered" //Flowering Azalea leaves
+                        "minecraft:double_plant:5"  // Peony
                     ],
                     "grow_up": {
                         "event": "minecraft:ageable_grow_up",
@@ -62,9 +60,7 @@
                         "minecraft:double_plant:0", // Sunflower
                         "minecraft:double_plant:1", // Lilac
                         "minecraft:double_plant:4", // Rose Bush
-                        "minecraft:double_plant:5",  // Peony
-                        "minecraft:flowering_azalea", //Flowering Azalea
-                        "minecraft:azalea_leaves_flowered" //Flowering Azalea leaves
+                        "minecraft:double_plant:5"  // Peony
                     ]
                 }
             },
@@ -184,12 +180,11 @@
                         "minecraft:red_flower",     // All small flowers except Dandelion
                         "minecraft:yellow_flower",  // Dandelion
                         "minecraft:wither_rose",
+                        "minecraft:sweet_berry_bush",
                         "minecraft:double_plant:8", // Sunflower top
                         "minecraft:double_plant:9", // Lilac top
                         "minecraft:double_plant:12", // Rose Bush top
-                        "minecraft:double_plant:13",  // Peony top
-                        "minecraft:flowering_azalea", //Flowering azalea
-                        "minecraft:azalea_leaves_flowered" //Flowering Azalea leaves
+                        "minecraft:double_plant:13"  // Peony top
                     ],
                     "on_stay_completed": [
                         {
@@ -246,12 +241,10 @@
                             "target": "self"
                         }
                     ],
-                    "on_failed": [
-                      {
+                    "on_failed": {
                         "event": "find_hive_event",
                         "target": "self"
-                      }
-                    ]
+                    }
                 }
             },
             "find_hive": {
@@ -377,8 +370,6 @@
             }
         },
         "components": {
-            "minecraft:is_hidden_when_invisible": {
-            },
             "minecraft:behavior.tempt": {
                 "priority": 5,
                 "speed_multiplier": 1.25,
@@ -391,9 +382,7 @@
                     "minecraft:double_plant:0", // Sunflower
                     "minecraft:double_plant:1", // Lilac
                     "minecraft:double_plant:4", // Rose Bush
-                    "minecraft:double_plant:5",  // Peony
-                    "minecraft:flowering_azalea", //Flowering azalea
-                    "minecraft:azalea_leaves_flowered" //Flowering Azalea leaves
+                    "minecraft:double_plant:5"  // Peony
                 ]
             },
             "minecraft:behavior.move_towards_home_restriction": {
@@ -411,9 +400,6 @@
                 "soft_distance": 4.0,
                 "hard_distance": 6.0,
                 "max_distance": 10.0
-            },
-            "minecraft:balloonable": {
-                "mass": 0.5
             },
             "minecraft:behavior.float": {
                 "priority": 19
@@ -490,13 +476,6 @@
             "minecraft:nameable": {},
             "minecraft:block_sensor": {
                 "sensor_radius": 16,
-                "sources" : [
-                    {
-                        "test": "has_silk_touch",
-                        "subject": "other",
-                        "value": false
-                    }
-                ],
                 "on_break": [
                     {
                         "block_list": [

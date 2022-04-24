@@ -75,8 +75,6 @@
     },
 
     "components": {
-      "minecraft:is_hidden_when_invisible": {
-      },
       "minecraft:type_family": {
         "family": [ "cow", "mob" ]
       },
@@ -109,12 +107,7 @@
       "minecraft:hurt_on_condition": {
         "damage_conditions": [
           {
-            "filters": {
-              "test": "in_lava",
-              "subject": "self",
-              "operator": "==",
-              "value": true
-            },
+            "filters": { "test": "in_lava", "subject": "self", "operator": "==", "value": true },
             "cause": "lava",
             "damage_per_tick": 4
           }
@@ -197,7 +190,11 @@
         "randomize": [
           {
             "weight": 95,
-            "trigger": "minecraft:spawn_adult"
+            "add": {
+              "component_groups": [
+                "minecraft:cow_adult"
+              ]
+            }
           },
           {
             "weight": 5,
@@ -234,14 +231,6 @@
             "minecraft:cow_baby"
           ]
         },
-        "add": {
-          "component_groups": [
-            "minecraft:cow_adult"
-          ]
-        }
-      },
-
-      "minecraft:spawn_adult": {
         "add": {
           "component_groups": [
             "minecraft:cow_adult"

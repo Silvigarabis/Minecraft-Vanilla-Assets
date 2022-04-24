@@ -1,5 +1,5 @@
 {
-  "format_version": "1.17.10",
+  "format_version": "1.16.0",
   "minecraft:entity": {
     "description": {
       "identifier": "minecraft:endermite",
@@ -8,8 +8,6 @@
       "is_experimental": false
     },
     "components": {
-      "minecraft:is_hidden_when_invisible": {
-      },
       "minecraft:experience_reward": {
         "on_death": "query.last_hit_by_player ? 3 : 0"
       },
@@ -21,7 +19,7 @@
       },
 
       "minecraft:type_family": {
-        "family": [ "endermite", "arthropod", "monster", "lightweight", "mob" ]
+        "family": [ "endermite", "arthropod", "monster", "mob" ]
       },
       "minecraft:collision_box": {
         "width": 0.4,
@@ -103,8 +101,6 @@
         "is_pushable_by_piston": true
       },
       "minecraft:conditional_bandwidth_optimization": {
-      },
-      "minecraft:block_climber": {
       }
     }
   }

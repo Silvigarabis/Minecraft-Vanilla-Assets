@@ -21,7 +21,7 @@
 
   "button_label": {
     "type": "label",
-    "size": [ "100%-15px", "default" ],
+    "size": [ "100%-30px", "default" ],
     "anchor_from": "center",
     "anchor_to": "center",
     "text_alignment": "center",
@@ -171,7 +171,6 @@
         "mapping_type": "global"
       }
     ],
-    "$close_button_visible_binding_name": "#xbl_first_launch_close_button_visible",
     "$screen_content": "xbl_first_launch.xbl_first_launch_screen_content"
   },
 

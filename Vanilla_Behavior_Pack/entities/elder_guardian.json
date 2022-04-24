@@ -8,8 +8,6 @@
       "is_experimental": false
     },
     "components": {
-      "minecraft:is_hidden_when_invisible": {
-      },
       "minecraft:experience_reward": {
         "on_death": "query.last_hit_by_player ? 10 : 0"
       },
@@ -72,8 +70,7 @@
             "filters": {  
                 "any_of": [
                   { "test" :  "is_family", "subject" : "other", "value" :  "player"},
-                  { "test" :  "is_family", "subject" : "other", "value" :  "squid"},
-                  { "test" :  "is_family", "subject" : "other", "value" :  "axolotl"}
+                  { "test" :  "is_family", "subject" : "other", "value" :  "squid"}
                 ] 
             },
             "max_dist": 16

@@ -158,7 +158,6 @@
   // Screen //
 
   "safe_zone_screen@common.base_screen": {
-    "should_be_skipped_during_automation": true,
     "variables": [
       {
         "requires": "$is_publish",
