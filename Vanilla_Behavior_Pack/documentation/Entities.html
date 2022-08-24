@@ -1,5 +1,5 @@
-<h1>ENTITIES DOCUMENTATION </br>Version: 1.19.0.30</h1>
-This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
+<h1>ENTITIES DOCUMENTATION </br>Version: 1.19.20.24</h1>
+This is documentation for a preview release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of preview if your add-on isn't working properly. Resource and Behavior Packs created for the preview are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
 <tr> <th><a href="#Client Entity Documentation">Client Entity Documentation</a></th> </tr>
@@ -8,6 +8,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr> <td> <a href="#animation_controllers"> animation_controllers</a> </tr> </td>
 <tr> <td> <a href="#animations"> animations</a> </tr> </td>
 <tr> <td> <a href="#enable_attachables"> enable_attachables</a> </tr> </td>
+<tr> <td> <a href="#held_item_ignores_lighting"> held_item_ignores_lighting</a> </tr> </td>
 <tr> <td> <a href="#hide_armor"> hide_armor</a> </tr> </td>
 <tr> <td> <a href="#identifier"> identifier</a> </tr> </td>
 <tr> <td> <a href="#locators"> locators</a> </tr> </td>
@@ -178,6 +179,14 @@ Allows the player to assign names to reference the long name for animations. The
 This determines if the entity can equip attachables when this is set to true. This allows the entity to render armor and weapons.</br><h2></h2>
 <br / ><textarea readonly="true" cols="27" rows="2">
 "enable_attachables": true
+</textarea> </br>
+<a href="#Index">Back to top</a><br><br>
+
+<h1><p id="held_item_ignores_lighting">held_item_ignores_lighting</p></h1>
+
+This determines if the item held by an entity should render fully lit up (if true), or depending on surrounding lighting.</br><h2></h2>
+<br / ><textarea readonly="true" cols="35" rows="2">
+"held_item_ignores_lighting": true
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
 
@@ -9409,6 +9418,12 @@ Allows the mob to target another mob that hurts an entity it trusts.</br><h3></h
 <td style="border-style:solid; border-width:1; padding:9px">Determines the amount of time in seconds that this mob will look for a target before forgetting about it and looking for a new one when the target isn't visible any more</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:1; padding:9px">reevaluate_description</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">false</td>
+<td style="border-style:solid; border-width:1; padding:9px">If true, the mob will stop being targeted if it stops meeting any conditions.</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:1; padding:9px">sprint_speed_multiplier</td>
 <td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
 <td style="border-style:solid; border-width:1; padding:9px">1.0</td>
@@ -9643,6 +9658,12 @@ Allows an entity to attack, while also delaying the damage-dealt until a specifi
 <td style="border-style:solid; border-width:2; padding:8px">The minimum idle time in seconds between the last detected disturbance to the start of digging.</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:2; padding:8px">on_start</td>
+<td style="border-style:solid; border-width:2; padding:8px">Trigger</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">Event(s) to run when the goal starts.</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:2; padding:8px">suspicion_is_disturbance</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">false</td>
@@ -9809,6 +9830,27 @@ Allows this entity to fly around looking for a player to shoot fireballs at. Can
 <h2><p id="minecraft:behavior.dragontakeoff">minecraft:behavior.dragontakeoff</p></h2>
 
 Allows the dragon to leave perch mode and go back to flying around. Can only be used by the Ender Dragon.</br><a href="#Index">Back to top</a><br><br>
+
+<h2><p id="minecraft:behavior.drink_milk">minecraft:behavior.drink_milk</p></h2>
+
+Allows the mob to drink milk based on specified environment conditions.</br><h3></h3>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
+<tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">cooldown_seconds</td>
+<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
+<td style="border-style:solid; border-width:2; padding:8px">5.00</td>
+<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds) that the goal is on cooldown before it can be used again.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">filters</td>
+<td style="border-style:solid; border-width:2; padding:8px">Minecraft Filter</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">Conditions that need to be met for the behavior to start.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
 
 <h2><p id="minecraft:behavior.drink_potion">minecraft:behavior.drink_potion</p></h2>
 
@@ -10415,6 +10457,12 @@ Allows the mob to follow mobs that are in a caravan.</br><h3></h3>
 <td style="border-style:solid; border-width:1; padding:9px">Determines the amount of time in seconds that this mob will look for a target before forgetting about it and looking for a new one when the target isn't visible any more</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:1; padding:9px">reevaluate_description</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">false</td>
+<td style="border-style:solid; border-width:1; padding:9px">If true, the mob will stop being targeted if it stops meeting any conditions.</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:1; padding:9px">sprint_speed_multiplier</td>
 <td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
 <td style="border-style:solid; border-width:1; padding:9px">1.0</td>
@@ -10902,6 +10950,12 @@ Allows the mob to target another mob that hurts them.</br><h3></h3>
 <td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
 <td style="border-style:solid; border-width:1; padding:9px">3.0</td>
 <td style="border-style:solid; border-width:1; padding:9px">Determines the amount of time in seconds that this mob will look for a target before forgetting about it and looking for a new one when the target isn't visible any more</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">reevaluate_description</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">false</td>
+<td style="border-style:solid; border-width:1; padding:9px">If true, the mob will stop being targeted if it stops meeting any conditions.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">sprint_speed_multiplier</td>
@@ -12170,6 +12224,12 @@ Allows an entity to attack the closest target within a given subset of specific 
 <td style="border-style:solid; border-width:3; padding:7px">3.0</td>
 <td style="border-style:solid; border-width:3; padding:7px">Time (in seconds) the target must not be seen by this entity to become invalid. Used only if "must_see" is true.</br></td>
 </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">reevaluate_description</td>
+<td style="border-style:solid; border-width:3; padding:7px">Boolean</td>
+<td style="border-style:solid; border-width:3; padding:7px">false</td>
+<td style="border-style:solid; border-width:3; padding:7px">If true, the mob will stop being targeted if it stops meeting any conditions.</br></td>
+</tr>
 </table>
 </td>
 </tr>
@@ -12283,6 +12343,12 @@ Allows the mob to check for and pursue the nearest valid target.</br><h3></h3>
 <td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
 <td style="border-style:solid; border-width:1; padding:9px">3.0</td>
 <td style="border-style:solid; border-width:1; padding:9px">Determines the amount of time in seconds that this mob will look for a target before forgetting about it and looking for a new one when the target isn't visible any more</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">reevaluate_description</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">false</td>
+<td style="border-style:solid; border-width:1; padding:9px">If true, the mob will stop being targeted if it stops meeting any conditions.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">sprint_speed_multiplier</td>
@@ -12502,6 +12568,12 @@ Allows the mob to target another mob that hurts their owner.</br><h3></h3>
 <td style="border-style:solid; border-width:1; padding:9px">Determines the amount of time in seconds that this mob will look for a target before forgetting about it and looking for a new one when the target isn't visible any more</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:1; padding:9px">reevaluate_description</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">false</td>
+<td style="border-style:solid; border-width:1; padding:9px">If true, the mob will stop being targeted if it stops meeting any conditions.</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:1; padding:9px">sprint_speed_multiplier</td>
 <td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
 <td style="border-style:solid; border-width:1; padding:9px">1.0</td>
@@ -12554,6 +12626,12 @@ Allows the mob to target a mob that is hurt by their owner.</br><h3></h3>
 <td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
 <td style="border-style:solid; border-width:1; padding:9px">3.0</td>
 <td style="border-style:solid; border-width:1; padding:9px">Determines the amount of time in seconds that this mob will look for a target before forgetting about it and looking for a new one when the target isn't visible any more</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">reevaluate_description</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">false</td>
+<td style="border-style:solid; border-width:1; padding:9px">If true, the mob will stop being targeted if it stops meeting any conditions.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">sprint_speed_multiplier</td>
@@ -13467,6 +13545,12 @@ Allows the mob to give items it has to others.</br><h3></h3>
 <td style="border-style:solid; border-width:1; padding:9px">Determines the amount of time in seconds that this mob will look for a target before forgetting about it and looking for a new one when the target isn't visible any more</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:1; padding:9px">reevaluate_description</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">false</td>
+<td style="border-style:solid; border-width:1; padding:9px">If true, the mob will stop being targeted if it stops meeting any conditions.</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:1; padding:9px">sprint_speed_multiplier</td>
 <td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
 <td style="border-style:solid; border-width:1; padding:9px">1.0</td>
@@ -13758,6 +13842,12 @@ Allows the mob to stop and sneeze possibly startling nearby mobs and dropping an
 <td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
 <td style="border-style:solid; border-width:1; padding:9px">3.0</td>
 <td style="border-style:solid; border-width:1; padding:9px">Determines the amount of time in seconds that this mob will look for a target before forgetting about it and looking for a new one when the target isn't visible any more</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">reevaluate_description</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">false</td>
+<td style="border-style:solid; border-width:1; padding:9px">If true, the mob will stop being targeted if it stops meeting any conditions.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">sprint_speed_multiplier</td>
@@ -14743,6 +14833,12 @@ Allows the mob to target the same entity its owner is targeting.</br><h3></h3>
 <td style="border-style:solid; border-width:1; padding:9px">Determines the amount of time in seconds that this mob will look for a target before forgetting about it and looking for a new one when the target isn't visible any more</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:1; padding:9px">reevaluate_description</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">false</td>
+<td style="border-style:solid; border-width:1; padding:9px">If true, the mob will stop being targeted if it stops meeting any conditions.</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:1; padding:9px">sprint_speed_multiplier</td>
 <td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
 <td style="border-style:solid; border-width:1; padding:9px">1.0</td>
@@ -14803,6 +14899,12 @@ Allows the wither to focus its attacks on whichever mob has dealt the most damag
 <td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
 <td style="border-style:solid; border-width:1; padding:9px">3.0</td>
 <td style="border-style:solid; border-width:1; padding:9px">Determines the amount of time in seconds that this mob will look for a target before forgetting about it and looking for a new one when the target isn't visible any more</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">reevaluate_description</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">false</td>
+<td style="border-style:solid; border-width:1; padding:9px">If true, the mob will stop being targeted if it stops meeting any conditions.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">sprint_speed_multiplier</td>
@@ -16398,7 +16500,7 @@ Defines how much exhaustion each player action should take.</br><h3></h3>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">attack</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.3</td>
+<td style="border-style:solid; border-width:2; padding:8px">0.1</td>
 <td style="border-style:solid; border-width:2; padding:8px">Amount of exhaustion applied when attacking.</br></td>
 </tr>
 <tr>
@@ -16410,19 +16512,19 @@ Defines how much exhaustion each player action should take.</br><h3></h3>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">heal</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">3</td>
+<td style="border-style:solid; border-width:2; padding:8px">6</td>
 <td style="border-style:solid; border-width:2; padding:8px">Amount of exhaustion applied when healed through food regeneration.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">jump</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.2</td>
+<td style="border-style:solid; border-width:2; padding:8px">0.05</td>
 <td style="border-style:solid; border-width:2; padding:8px">Amount of exhaustion applied when jumping.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">mine</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.025</td>
+<td style="border-style:solid; border-width:2; padding:8px">0.005</td>
 <td style="border-style:solid; border-width:2; padding:8px">Amount of exhaustion applied when mining.</br></td>
 </tr>
 <tr>
@@ -16434,19 +16536,19 @@ Defines how much exhaustion each player action should take.</br><h3></h3>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">sprint_jump</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.8</td>
+<td style="border-style:solid; border-width:2; padding:8px">0.2</td>
 <td style="border-style:solid; border-width:2; padding:8px">Amount of exhaustion applied when sprint jumping.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">swim</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.015</td>
+<td style="border-style:solid; border-width:2; padding:8px">0.01</td>
 <td style="border-style:solid; border-width:2; padding:8px">Amount of exhaustion applied when swimming.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">walk</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.01</td>
+<td style="border-style:solid; border-width:2; padding:8px">0</td>
 <td style="border-style:solid; border-width:2; padding:8px">Amount of exhaustion applied when walking.</br></td>
 </tr>
 </table>
@@ -16643,6 +16745,33 @@ Allows entities to flock in groups in water or not.</br><h3></h3>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">false</td>
 <td style="border-style:solid; border-width:2; padding:8px">Tells the flockers that they will follow flocks based on the center of mass.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h2><p id="minecraft:game_event_movement_tracking">minecraft:game_event_movement_tracking</p></h2>
+
+Allows an entity to emit `entityMove`, `swim` and `flap` game events, depending on the block the entity is moving through. It is added by default to every mob. Add it again to override its behavior.</br><h3></h3>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
+<tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">emit_flap</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">false</td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, the `flap` game event will be emitted when the entity moves through air.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">emit_move</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">true</td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, the `entityMove` game event will be emitted when the entity moves on ground or through a solid.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">emit_swim</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">true</td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, the `swim` game event will be emitted when the entity moves through a liquid.</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -19846,6 +19975,10 @@ Sets the mapping of internal animation controller references to actual animation
 <td style="border-style:solid; border-width:2; padding:8px">-1912535317</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.drink_milk</td>
+<td style="border-style:solid; border-width:2; padding:8px">14686590835698253470</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.drink_potion</td>
 <td style="border-style:solid; border-width:2; padding:8px">277029334</br></td>
 </tr>
@@ -20566,6 +20699,10 @@ Sets the mapping of internal animation controller references to actual animation
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:flocking</td>
 <td style="border-style:solid; border-width:2; padding:8px">1967597361</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">minecraft:game_event_movement_tracking</td>
+<td style="border-style:solid; border-width:2; padding:8px">763815151</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:genetics</td>
